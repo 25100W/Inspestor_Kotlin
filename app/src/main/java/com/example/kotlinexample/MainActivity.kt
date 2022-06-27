@@ -22,6 +22,8 @@ import androidx.core.content.PackageManagerCompat
 import com.example.kotlinexample.databinding.ActivityMainBinding
 import com.example.kotlinexample.ml.Detect
 import com.example.kotlinexample.ml.TestTrainMetadata
+import com.example.kotlinexample.ml.TestTrainMetadata2
+import com.example.kotlinexample.ml.TestTrainMetadata3
 import org.tensorflow.lite.support.image.TensorImage
 
 class MainActivity : AppCompatActivity() {
@@ -111,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun outputGenerator(bitmap: Bitmap){
-        val TestTrainModel = TestTrainMetadata.newInstance(this)
+        val TestTrainModel = TestTrainMetadata3.newInstance(this)
 
         // Creates inputs for reference.
         val newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
@@ -126,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
         val detectionResult = outputs[0]
 
-        if (detectionResult.scoreAsFloat <= .25){
+        if (detectionResult.scoreAsFloat <= .5){
             tvOutput.text = "No pest detected"
             textView.text = " "
         } else {
@@ -140,6 +142,15 @@ class MainActivity : AppCompatActivity() {
             }
             else if (detectionResult.categoryAsString == "Brown Planthopper"){
                 textView.text = "PHENTHOATE 500 g/L" + "\n" + "PHENTHOATE+BPMC 250 g/L" + "\n" + "CYPERMETHRIN 50g/L"
+            }
+            else if (detectionResult.categoryAsString == "Leaf Folder"){
+                textView.text = "ETOFENPROX 25 g/L" + "\n" + "CYPERMETHRIN 55 g/L" + "\n" + "DIAZINON 600g/L"
+            }
+            else if (detectionResult.categoryAsString == "Green Planthopper"){
+                textView.text = "LAMBDA-CYHALOTHRIN 25 g/L" + "\n" + "CYPERMETHRIN 50 g/L" + "\n" + "PHENTOATE 500g/L"
+            }
+            else if (detectionResult.categoryAsString == "Rice Black Bug"){
+                textView.text = "DELTAMETHRIN 25 g/L" + "\n" + "BETA-CYPHERMETRIN 25 g/L" + "\n" + "AZADIRACHTIN 3g/L"
             }
             else {
                 textView.text = " "
