@@ -24,6 +24,7 @@ import com.example.kotlinexample.ml.Detect
 import com.example.kotlinexample.ml.TestTrainMetadata
 import com.example.kotlinexample.ml.TestTrainMetadata2
 import com.example.kotlinexample.ml.TestTrainMetadata3
+import com.example.kotlinexample.ml.TestTrainMetadataUpdated
 import org.tensorflow.lite.support.image.TensorImage
 
 class MainActivity : AppCompatActivity() {
@@ -113,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun outputGenerator(bitmap: Bitmap){
-        val TestTrainModel = TestTrainMetadata3.newInstance(this)
+        val TestTrainModel = TestTrainMetadataUpdated.newInstance(this)
 
         // Creates inputs for reference.
         val newBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true)
